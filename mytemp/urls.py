@@ -13,6 +13,7 @@ app_name='mytemp'
 
 urlpatterns = [
     url(r'^$',views.index,name='index'),
-    url(r'^$',views.index2,name='index'),
+    url(r'^2$',views.index2,name='index2'),
+    url(r'^ajax_deal',views.ajax_deal,name='ajax_deal')
     ]
 

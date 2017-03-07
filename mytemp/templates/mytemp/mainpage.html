@@ -403,7 +403,7 @@
 					$(this).each(function(){
 						$(".nav-list").children(".active").removeClass("active");
 						$(this).toggleClass("active");
-						$(".page-content").load("{%static 'mytemp/inner1.html'%}");
+						$(".page-content").load("{%url 'mytemp:ajax_deal'%}");
 					});
 				});
 				
