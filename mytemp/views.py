@@ -12,4 +12,5 @@ def index2(request):
     return render(request, 'mytemp/mainpage2.html')
 
 def ajax_deal(request):
-    return render(request,'mytemp/inner1.html')
+    req=request.GET.get('req')
+    return render(request,'mytemp/%s.html'%req)

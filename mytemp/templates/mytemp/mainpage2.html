@@ -218,39 +218,39 @@
 <!-- 左侧菜单开始 -->
 					<ul class="nav nav-list">
 						
-						<li class="active">
+						<li class="active" value="xtsy">
 							<a href="#">
 								<i class="icon-dashboard"></i>
 								<span class="menu-text"> 系统首页 </span>
 							</a>
 						</li>
-						<li class="">
+						<li class="" value="sbxx">
 							<a href="#">
 								<i class="icon-laptop"></i>
 								<span class="menu-text">设备信息</span>
 							</a>
 						</li>
-						<li class="">
+						<li class="" value="wlsb">
 							<a href="#">
 								<i class="icon-globe"></i>
 								<span class="menu-text">网络设备</span>
 							</a>
 						</li>
-						<li class="">
+						<li class="" value="ckfk">
 							<a href="#">
 								<i class="icon-bullhorn"></i>
 								<span class="menu-text">查看反馈</span>
 							</a>
 						</li>
-						<li>
-							<a href="#" class="dropdown-toggle">
+						<li name="sub">
+							<a href="#" class="dropdown-toggle" >
 								<i class="icon-tag"></i>
 								<span class="menu-text">个人设置</span>
 								<b class="arrow icon-angle-down"></b>
 							</a>
 
 							<ul class="submenu">
-								<li>
+								<li value="grzl">
 									<a href="#">
 										<i class="icon-double-angle-right"></i>
 										个人资料
@@ -258,7 +258,7 @@
 								</li>
 
 								<li>
-									<a href="#">
+									<a href="#" value="xgmm">
 										<i class="icon-double-angle-right"></i>
 										修改密码
 									</a>
@@ -283,7 +283,7 @@
 			try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
 		</script>
 		<ul class="breadcrumb">
-			<li><i class="icon-home home-icon"></i> <a href="#">首页</a></li>
+			<li><i class="icon-home home-icon"></i> <a href="">首页</a></li>
 			<li class="active">控制台</li>
 		</ul>
 		<!-- .breadcrumb -->
@@ -420,17 +420,39 @@
 		<script type="text/javascript">
 		
 			$(document).ready(function(){
-				
+				//和下面的效果一样
 			});
 			jQuery(function($) {
-				$(".nav-list").children().click(function(){
-					$(this).each(function(){
-						$(".nav-list").children(".active").removeClass("active");
-						$(this).toggleClass("active");
+				 $(".nav-list li").click(function(){
+					 $(this).each(function(){
+						 var menustr=$(this).attr("value");
+						 if ($(this).attr("name")=="sub")
+						{	//如果点了下拉框 啥也不做
+						}else{
+							$(".nav-list li.active").removeClass("active");
+							if($(this).parent().parent().attr("name")=="sub")
+							{
+								$(this).parent().parent().addClass("active");
+								$(this).addClass("active");
+								$(".breadcrumb li:nth-child(2)").text("bb");
+							}
+							else{
+								$(this).addClass("active");
+								$(".breadcrumb li:nth-child(2)").text("aaa");
+							}
+							$(".page-content").load("{%url 'mytemp:ajax_deal'%}?req="+menustr);
+						}
+						 //加载页面
+						
 					});
-				});	
+				});/* $(".nav-list li").click(function() */ 
 				
 			});
+			/* function menuclick(context){
+				$("li.active").removeClass("active");
+				alert(context.value);
+				context.toggleClass("active");
+			}; */
 		
 		</script>
 	<!-- <div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div> -->
